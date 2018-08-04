@@ -1,46 +1,56 @@
 package com.string;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class StringDisplayPattern {
 
+	static Map<String,char[]> map=new HashMap<>();
+	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
 		String splitThis = "My Name Is Shubham ";
-			
+		System.out.println("Input String :" + splitThis);
+		StringDisplayPattern obj = new StringDisplayPattern();
+		String[] a = obj.splitThis(splitThis);
+		obj.returnCharArray(a);
+		System.out.print(map.get("My")[0]);
+		System.out.print(map.get("Name")[0]);
+		System.out.print(map.get("Is")[0]);
+		System.out.print(map.get("Shubham")[0]);
 		
-		String a1 = splitThis.substring(0, splitThis.indexOf(' ')).trim();
-		char[] aa1=a1.toCharArray();
-		System.out.println(a1);
-		
-		
-		splitThis=splitThis.substring(splitThis.indexOf(' '), splitThis.length()).trim();
-		String a2=splitThis.substring(0, splitThis.indexOf(' '));
-		char[] aa2=a2.toCharArray();
-		System.out.println(a2);
-		
-		
-		splitThis=splitThis.substring(splitThis.indexOf(' '), splitThis.length()).trim();
-		String a3=splitThis.substring(0, splitThis.indexOf(' '));
-		char[] aa3=a3.toCharArray();
-		System.out.println(a3);
-		
-		splitThis=splitThis.substring(splitThis.indexOf(' '), splitThis.length()).trim();
-		String a4=splitThis.substring(0, splitThis.length());
-		char[] aa4=a4.toCharArray();
-		System.out.println(a4);
-		
-		String x1=String.valueOf(aa1[0]);
-		
-		for (int i=0;i<5;i++) {
-			System.out.println(String.valueOf(aa1[0])+String.valueOf(aa2[0])+String.valueOf(aa3[0])+String.valueOf(aa4[0]));
-			System.out.println(String.valueOf(aa1[1])+String.valueOf(aa2[1])+String.valueOf(aa3[1])+String.valueOf(aa4[1]));
-			//System.out.println(aa1[1]+aa2[1]+aa3[1]);
-		}
-		
-		//System.out.println(splitThis.matches(" "));
-		
-		//System.out.println(splitThis.);
-		
+		System.out.println();
+		System.out.print(map.get("My")[1]);
+		System.out.print(map.get("Name")[1]);
+		System.out.print(map.get("Is")[1]);
+		System.out.print(map.get("Shubham")[1]);
+
+		/*for(int i=0;i<map.size();i++) {
+			System.out.println(map.get(a[i])[i]);
+		}*/
 	}
 
+	public String[] splitThis(String splitThis) {
+		String[] a = {null,null,null,null};
+		for(int i=0;i<=a.length-1;i++) {
+			if(i==0) {
+				a[i] = splitThis.substring(0, splitThis.indexOf(' ')).trim();
+				
+			}else if(i==a.length-1) {
+				splitThis=splitThis.substring(splitThis.indexOf(' '), splitThis.length()).trim();
+				a[i]=splitThis.substring(0, splitThis.length());
+			}
+			else{
+				splitThis=splitThis.substring(splitThis.indexOf(' '), splitThis.length()).trim();
+				a[i]=splitThis.substring(0, splitThis.indexOf(' '));
+			}
+			//System.out.println(a[i]);
+		}
+		return a;
+	}
+	
+	public void returnCharArray(String[] splitThis) {
+		for(int i=0;i<splitThis.length;i++) {
+			map.put(splitThis[i], splitThis[i].toCharArray());
+		}
+	}
 }
